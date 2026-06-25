@@ -2,6 +2,7 @@
 using System.Linq;
 using WeatherAnalyzer.Models;
 using WeatherAnalyzer.Services.Interfaces;
+using System.Text.Json;
 
 namespace WeatherAnalyzer.Services;
 
@@ -21,9 +22,21 @@ public class WeatherRepository : IWeatherRepository
         throw new NotImplementedException();
     }
 
-    public Task<List<WeatherData>> LoadAsync(string city)
+    public async Task<List<WeatherData>> LoadAsync(string city)
     {
-        throw new NotImplementedException();
+        var filePath = GetFilePath(city);
+
+        if (!File.Exists(filePath))
+        {
+            return [];
+        }
+
+        await using var stream = File.OpenRead(filePath);
+
+        var weatherData =
+            await JsonSerializer.DeserializeAsync<List<WeatherData>>(stream);
+
+        return weatherData ?? []; // Если десериализация вернула null, возвращаем пустой список.
     }
 
     public IEnumerable<string> GetAvailableCities()
@@ -31,5 +44,10 @@ public class WeatherRepository : IWeatherRepository
         return Directory
         .EnumerateFiles(_dataDirectory, "*.json")
         .Select(file => Path.GetFileNameWithoutExtension(file)!); // (file)! гарантирует компилятору, что результат не будет null, так как мы ожидаем, что файлы будут иметь имена.
+    }
+
+    private string GetFilePath(string city)
+    {
+        return Path.Combine(_dataDirectory, $"{city}.json");
     }
 }
