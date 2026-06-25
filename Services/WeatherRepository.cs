@@ -17,9 +17,52 @@ public class WeatherRepository : IWeatherRepository
         Directory.CreateDirectory(_dataDirectory);
     }
 
-    public Task SaveAsync(IEnumerable<WeatherData> weatherData)
+    public async Task SaveAsync(IEnumerable<WeatherData> weatherData)
     {
-        throw new NotImplementedException();
+        var newData = weatherData.ToList();
+
+        if (newData.Count == 0)
+        {
+            return;
+        }
+
+        var city = newData[0].City;
+
+        var existingData = await LoadAsync(city);
+
+        foreach (var newItem in newData)
+        {
+            var existingItem = existingData.FirstOrDefault(
+                item => item.Date.Date == newItem.Date.Date);
+
+            if (existingItem is null)
+            {
+                existingData.Add(newItem);
+            }
+            else
+            {
+                existingItem.Temperature = newItem.Temperature;
+                existingItem.Humidity = newItem.Humidity;
+                existingItem.Pressure = newItem.Pressure;
+                existingItem.WindSpeed = newItem.WindSpeed;
+            }
+        }
+
+        var filePath = GetFilePath(city);
+
+        existingData = existingData    
+            .OrderBy(item => item.Date)
+            .ToList();
+
+        await using var stream = File.Create(filePath);
+
+        await JsonSerializer.SerializeAsync(
+            stream,
+            existingData,
+            new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
     }
 
     public async Task<List<WeatherData>> LoadAsync(string city)
