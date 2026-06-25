@@ -91,6 +91,20 @@ public class WeatherRepository : IWeatherRepository
 
     private string GetFilePath(string city)
     {
-        return Path.Combine(_dataDirectory, $"{city}.json");
+        return Path.Combine(_dataDirectory, $"{GetSafeFileName(city)}.json");
+    }
+
+    private static string GetSafeFileName(string city)
+    {
+        city = city.Trim();
+
+        var invalidChars = Path.GetInvalidFileNameChars();
+
+        var safeName = new string(
+            city
+                .Select(c => invalidChars.Contains(c) ? '_' : c)
+                .ToArray());
+
+        return safeName.Replace(' ', '_');
     }
 }
