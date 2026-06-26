@@ -3,7 +3,7 @@ using WeatherAnalyzer.Services.Interfaces;
 
 namespace WeatherAnalyzer.Services;
 
-public class WeatherAnalyzer : IWeatherAnalyzer
+public class WeatherStatisticsAnalyzer : IWeatherAnalyzer
 {
     public WeatherStatistics Analyze(IEnumerable<WeatherData> weatherData)
     {

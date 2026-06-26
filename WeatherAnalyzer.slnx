@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="WeatherAnalyzer.Tests/WeatherAnalyzer.Tests.csproj" Id="7fd7896f-6b74-42c5-9d68-0ef46b221343" />
+  <Project Path="WeatherAnalyzer/WeatherAnalyzer.csproj" />
+</Solution>
