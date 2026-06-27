@@ -8,5 +8,5 @@ namespace WeatherAnalyzer.Services.Interfaces;
 
 public interface IWeatherHtmlDownloader
 {
-    Task<string> DownloadAsync(string url);
+    Task<string> DownloadAsync(string city);
 }

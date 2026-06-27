@@ -13,8 +13,15 @@ public class WeatherHtmlDownloader : IWeatherHtmlDownloader
 {
     private readonly HttpClient _httpClient = new();
 
-    public async Task<string> DownloadAsync(string url)
+    public async Task<string> DownloadAsync(string city)
     {
+        var url = BuildUrl(city);
+
         return await _httpClient.GetStringAsync(url);
+    }
+
+    private static string BuildUrl(string city)
+    {
+        throw new NotImplementedException();
     }
 }
