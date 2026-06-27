@@ -19,13 +19,15 @@ namespace WeatherAnalyzer.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
 
             DataContext = new MainViewModel(
                 new WeatherRepository(),
-                new WeatherStatisticsAnalyzer());
+                new WeatherStatisticsAnalyzer(),
+                new WeatherHtmlDownloader());
         }
     }
 }

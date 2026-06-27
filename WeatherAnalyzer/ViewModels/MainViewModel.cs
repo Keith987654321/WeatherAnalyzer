@@ -9,23 +9,16 @@ public class MainViewModel : ViewModelBase
 {
     public MainViewModel(
     IWeatherRepository repository,
-    IWeatherAnalyzer analyzer)
+    IWeatherAnalyzer analyzer,
+    IWeatherHtmlDownloader downloader)
     {
         _repository = repository;
         _analyzer = analyzer;
+        _downloader = downloader;
 
         LoadWeatherCommand = new RelayCommand(LoadWeather);
 
-        Statistics = new WeatherStatistics
-        {
-            AverageTemperature = 0,
-            MinimumTemperature = 0,
-            MaximumTemperature = 0,
-            AverageHumidity = 0,
-            AveragePressure = 0,
-            AverageWindSpeed = 0,
-            RecordsCount = 0
-        };
+        Statistics = new WeatherStatistics();
     }
 
     private WeatherStatistics? _statistics;
