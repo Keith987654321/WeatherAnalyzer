@@ -22,6 +22,8 @@ public class WeatherHtmlDownloader : IWeatherHtmlDownloader
 
     private static string BuildUrl(string city)
     {
-        throw new NotImplementedException();
+        city = city.Trim();
+
+        return $"https://wttr.in/{Uri.EscapeDataString(city)}";
     }
 }
