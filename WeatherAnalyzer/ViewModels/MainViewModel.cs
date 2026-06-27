@@ -89,11 +89,18 @@ public class MainViewModel : ViewModelBase
             return;
         }
 
-        Status = "Загрузка...";
+        try
+        {
+            Status = "Загрузка данных...";
 
-        var html = await _downloader.DownloadAsync(City);
+            var html = await _downloader.DownloadAsync(City);
 
-        Status = html[..Math.Min(html.Length, 200)];
+            Status = $"Получено {html.Length:N0} символов.";
+        }
+        catch (Exception ex)
+        {
+            Status = $"Ошибка: {ex.Message}";
+        }
     }
 
     private string _status = "Введите название города.";
