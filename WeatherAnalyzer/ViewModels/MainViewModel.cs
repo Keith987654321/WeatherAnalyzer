@@ -16,7 +16,7 @@ public class MainViewModel : ViewModelBase
         _analyzer = analyzer;
         _downloader = downloader;
 
-        LoadWeatherCommand = new RelayCommand(LoadWeather);
+        LoadWeatherCommand = new RelayCommand(LoadWeatherAsync);
 
         Statistics = new WeatherStatistics();
     }
@@ -81,16 +81,19 @@ public class MainViewModel : ViewModelBase
 
     public RelayCommand LoadWeatherCommand { get; }
 
-    private void LoadWeather()
+    private async Task LoadWeatherAsync()
     {
         if (string.IsNullOrWhiteSpace(City))
         {
             Status = "Введите название города.";
-
             return;
         }
 
-        Status = $"Поиск данных для города \"{City}\"...";
+        Status = "Загрузка...";
+
+        var html = await _downloader.DownloadAsync(City);
+
+        Status = html[..Math.Min(html.Length, 200)];
     }
 
     private string _status = "Введите название города.";
