@@ -9,7 +9,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WeatherAnalyzer
+using WeatherAnalyzer.ViewModels;
+
+namespace WeatherAnalyzer.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -19,6 +21,8 @@ namespace WeatherAnalyzer
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new MainViewModel();
         }
     }
 }
