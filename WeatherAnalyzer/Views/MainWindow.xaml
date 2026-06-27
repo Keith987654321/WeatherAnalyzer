@@ -64,7 +64,8 @@
                 <Button
                     Grid.Column="1"
                     Width="120"
-                    Content="Загрузить"/>
+                    Content="Загрузить"
+                    Command="{Binding LoadWeatherCommand}"/>
 
             </Grid>
 
@@ -106,22 +107,22 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Margin="0,4" Text="Средняя температура"/>
-                    <TextBlock Grid.Column="1" Margin="0,4" Text="—"/>
+                    <TextBlock Grid.Column="1" Margin="0,4" Text="{Binding AverageTemperature, StringFormat={}{0:F1} °C}"/>
 
                     <TextBlock Grid.Row="1" Margin="0,4" Text="Минимальная температура"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="0,4" Text="—"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="0,4" Text="{Binding MinimumTemperature, StringFormat={}{0:F1} °C}"/>
 
                     <TextBlock Grid.Row="2" Margin="0,4" Text="Максимальная температура"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,4" Text="—"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,4" Text="{Binding MaximumTemperature, StringFormat={}{0:F1} °C}"/>
 
                     <TextBlock Grid.Row="3" Margin="0,4" Text="Средняя влажность"/>
-                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="0,4" Text="—"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="0,4" Text="{Binding AverageHumidity, StringFormat={}{0:F1} %}"/>
 
                     <TextBlock Grid.Row="4" Margin="0,4" Text="Среднее давление"/>
-                    <TextBlock Grid.Row="4" Grid.Column="1" Margin="0,4" Text="—"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Margin="0,4" Text="{Binding AveragePressure, StringFormat={}{0:F1} гПа}"/>
 
                     <TextBlock Grid.Row="5" Margin="0,4" Text="Средняя скорость ветра"/>
-                    <TextBlock Grid.Row="5" Grid.Column="1" Margin="0,4" Text="—"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1" Margin="0,4" Text="{Binding AverageWindSpeed, StringFormat={}{0:F1} м/c}"/>
 
                 </Grid>
 
