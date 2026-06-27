@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using WeatherAnalyzer.Services;
 using WeatherAnalyzer.ViewModels;
 
 namespace WeatherAnalyzer.Views
@@ -22,7 +23,9 @@ namespace WeatherAnalyzer.Views
         {
             InitializeComponent();
 
-            DataContext = new MainViewModel();
+            DataContext = new MainViewModel(
+                new WeatherRepository(),
+                new WeatherStatisticsAnalyzer());
         }
     }
 }

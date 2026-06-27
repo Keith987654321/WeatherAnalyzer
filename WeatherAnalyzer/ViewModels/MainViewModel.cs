@@ -7,10 +7,13 @@ namespace WeatherAnalyzer.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {
-    public MainViewModel(IWeatherRepository repository,
-    IWeatherAnalyzer analyzer,
-    IWeatherHtmlDownloader downloader)
+    public MainViewModel(
+    IWeatherRepository repository,
+    IWeatherAnalyzer analyzer)
     {
+        _repository = repository;
+        _analyzer = analyzer;
+
         LoadWeatherCommand = new RelayCommand(LoadWeather);
 
         Statistics = new WeatherStatistics
@@ -26,6 +29,10 @@ public class MainViewModel : ViewModelBase
     }
 
     private WeatherStatistics? _statistics;
+
+    private readonly IWeatherRepository _repository;
+    private readonly IWeatherAnalyzer _analyzer;
+    private readonly IWeatherHtmlDownloader _downloader;
 
     private void NotifyStatisticsChanged()
     {
@@ -83,15 +90,21 @@ public class MainViewModel : ViewModelBase
 
     private void LoadWeather()
     {
-        Statistics = new WeatherStatistics
+        if (string.IsNullOrWhiteSpace(City))
         {
-            AverageTemperature = 23.5,
-            MinimumTemperature = 18,
-            MaximumTemperature = 29,
-            AverageHumidity = 65,
-            AveragePressure = 1013,
-            AverageWindSpeed = 4.2,
-            RecordsCount = 7
-        };
+            Status = "Введите название города.";
+
+            return;
+        }
+
+        Status = $"Поиск данных для города \"{City}\"...";
+    }
+
+    private string _status = "Введите название города.";
+
+    public string Status
+    {
+        get => _status;
+        set => SetProperty(ref _status, value);
     }
 }
