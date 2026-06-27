@@ -10,7 +10,8 @@ namespace WeatherAnalyzer.Helpers;
 
 public class RelayCommand : ICommand
 {
-    private readonly Action _execute;
+    private readonly Action? _execute;
+    private readonly Func<Task>? _executeAsync;
     private readonly Func<bool>? _canExecute;
 
     public RelayCommand(
@@ -21,6 +22,14 @@ public class RelayCommand : ICommand
         _canExecute = canExecute;
     }
 
+    public RelayCommand(
+        Func<Task> executeAsync,
+        Func<bool>? canExecute = null)
+    {
+        _executeAsync = executeAsync;
+        _canExecute = canExecute;
+    }
+
     public event EventHandler? CanExecuteChanged;
 
     public bool CanExecute(object? parameter)
@@ -28,9 +37,18 @@ public class RelayCommand : ICommand
         return _canExecute?.Invoke() ?? true;
     }
 
-    public void Execute(object? parameter)
+    public async void Execute(object? parameter)
     {
-        _execute();
+        if (_execute is not null)
+        {
+            _execute();
+            return;
+        }
+
+        if (_executeAsync is not null)
+        {
+            await _executeAsync();
+        }
     }
 
     public void RaiseCanExecuteChanged()
