@@ -1,11 +1,15 @@
 ﻿using WeatherAnalyzer.Helpers;
 using WeatherAnalyzer.Models;
+using WeatherAnalyzer.Services;
+using WeatherAnalyzer.Services.Interfaces;
 
 namespace WeatherAnalyzer.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {
-    public MainViewModel()
+    public MainViewModel(IWeatherRepository repository,
+    IWeatherAnalyzer analyzer,
+    IWeatherHtmlDownloader downloader)
     {
         LoadWeatherCommand = new RelayCommand(LoadWeather);
 
