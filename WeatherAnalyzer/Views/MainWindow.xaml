@@ -240,11 +240,7 @@
                             Binding="{Binding PeriodName}" />
 
                             <DataGridTextColumn
-                            Header="Описание"
-                            Binding="{Binding Description}" />
-
-                            <DataGridTextColumn
-                            Header="Температура"
+                            Header="Темп."
                             Binding="{Binding Temperature, StringFormat={}{0} °C}" />
 
                             <DataGridTextColumn
@@ -260,7 +256,7 @@
                             Binding="{Binding PrecipitationAmount, StringFormat={}{0:F1} мм}" />
 
                             <DataGridTextColumn
-                            Header="Вероятность"
+                            Header="Вероят-ть"
                             Binding="{Binding PrecipitationProbability, StringFormat={}{0}%}" />
 
                         </DataGrid.Columns>
