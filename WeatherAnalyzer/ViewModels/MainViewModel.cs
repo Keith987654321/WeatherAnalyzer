@@ -157,6 +157,39 @@ public class MainViewModel : ViewModelBase
         }
         ];
 
+        XAxes =
+        [
+            new Axis
+            {
+                Labels = weather
+                    .Select(x => $"{x.Date:dd.MM}\n{GetPeriodShortName(x.Period)}")
+                    .ToArray(),
+                LabelsRotation = 0
+            }
+        ];
+
+        YAxes =
+        [
+            new Axis
+            {
+                Name = "Температура (°C)"
+            }
+        ];
+
         OnPropertyChanged(nameof(TemperatureSeries));
+        OnPropertyChanged(nameof(XAxes));
+        OnPropertyChanged(nameof(YAxes));
+    }
+
+    private static string GetPeriodShortName(DayPeriod period)
+    {
+        return period switch
+        {
+            DayPeriod.Morning => "У",
+            DayPeriod.Noon => "Д",
+            DayPeriod.Evening => "В",
+            DayPeriod.Night => "Н",
+            _ => string.Empty
+        };
     }
 }
