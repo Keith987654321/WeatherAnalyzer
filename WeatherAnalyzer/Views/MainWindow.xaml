@@ -287,6 +287,8 @@
                 Text="График"/>
 
                     <lvc:CartesianChart
+                        Margin="5"
+                        LegendTextSize="10"
                         Series="{Binding TemperatureSeries}"
                         XAxes="{Binding XAxes}"
                         YAxes="{Binding YAxes}" />

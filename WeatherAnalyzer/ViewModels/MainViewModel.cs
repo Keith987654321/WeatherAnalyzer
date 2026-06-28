@@ -11,6 +11,10 @@ namespace WeatherAnalyzer.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {
+    public const int graphTextSize = 11;
+    public const int graphGeometrySize = 11;
+    public const int graphNameTextSize = 12;
+    public const double graphLineSmoothness = 0.4;
     public MainViewModel(
     IWeatherRepository repository,
     IWeatherAnalyzer analyzer,
@@ -25,6 +29,36 @@ public class MainViewModel : ViewModelBase
         LoadWeatherCommand = new RelayCommand(LoadWeatherAsync);
 
         Statistics = new WeatherStatistics();
+
+        TemperatureSeries =
+        [
+            new LineSeries<int>
+            {
+                Name = "Температура",
+                Values = [],
+                GeometrySize = graphGeometrySize,
+                LineSmoothness =graphLineSmoothness
+            }
+        ];
+
+                XAxes =
+                [
+                    new Axis
+            {
+                TextSize = graphTextSize,
+            }
+                ];
+
+                YAxes =
+                [
+                    new Axis
+            {
+                Name = "Температура (°C)",
+                NameTextSize = graphNameTextSize,
+                TextSize = graphTextSize,
+                MinStep = 1
+            }
+                ];
     }
 
     private WeatherStatistics? _statistics;
@@ -150,11 +184,17 @@ public class MainViewModel : ViewModelBase
         TemperatureSeries =
         [
             new LineSeries<int>
-        {
-            Values = weather
-                .Select(x => x.Temperature)
-                .ToArray()
-        }
+            {
+                Name = "Температура",
+
+                GeometrySize = graphGeometrySize,
+
+                LineSmoothness = graphLineSmoothness,
+
+                Values = weather
+                    .Select(x => x.Temperature)
+                    .ToArray()
+            }
         ];
 
         XAxes =
@@ -164,7 +204,10 @@ public class MainViewModel : ViewModelBase
                 Labels = weather
                     .Select(x => $"{x.Date:dd.MM}\n{GetPeriodShortName(x.Period)}")
                     .ToArray(),
-                LabelsRotation = 0
+
+                LabelsRotation = 0,
+
+                TextSize = graphTextSize
             }
         ];
 
@@ -172,7 +215,10 @@ public class MainViewModel : ViewModelBase
         [
             new Axis
             {
-                Name = "Температура (°C)"
+                Name = "Температура (°C)",
+                NameTextSize = graphNameTextSize,
+                TextSize = graphTextSize,
+                MinStep = 1
             }
         ];
 
