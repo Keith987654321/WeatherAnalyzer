@@ -30,7 +30,8 @@ public class MainViewModel : ViewModelBase
 
         Statistics = new WeatherStatistics();
 
-        TemperatureSeries =
+
+    TemperatureSeries =
         [
             new LineSeries<int>
             {
@@ -67,7 +68,8 @@ public class MainViewModel : ViewModelBase
     private readonly IWeatherAnalyzer _analyzer;
     private readonly IWeatherReportDownloader _downloader;
     private readonly IWeatherReportParser _parser;
-
+    
+    private List<WeatherData> _weatherHistory = [];
 
     public ObservableCollection<WeatherData> WeatherRecords { get; }
     = [];
@@ -101,6 +103,17 @@ public class MainViewModel : ViewModelBase
             }
         }
     }
+
+    public IReadOnlyList<ChartType> AvailableCharts { get; } =
+    [
+        ChartType.Temperature,
+        ChartType.WindSpeed,
+        ChartType.Visibility,
+        ChartType.PrecipitationAmount,
+        ChartType.PrecipitationProbability
+    ];
+
+    private ChartType _selectedChart = ChartType.Temperature;
 
     public double AverageTemperature =>
     Statistics?.AverageTemperature ?? 0;
@@ -154,8 +167,9 @@ public class MainViewModel : ViewModelBase
             var weatherData = _parser.Parse(City, report);
             await _repository.SaveAsync(weatherData);
             var history = await _repository.LoadAsync(City);
+            _weatherHistory = history;
             Statistics = _analyzer.Analyze(history);
-            BuildTemperatureChart(history);
+            UpdateChart();
             WeatherRecords.Clear();
 
             foreach (var item in history)
@@ -179,7 +193,36 @@ public class MainViewModel : ViewModelBase
         set => SetProperty(ref _status, value);
     }
 
-    private void BuildTemperatureChart(List<WeatherData> weather)
+    private void UpdateChart()
+    {
+        if (_weatherHistory.Count == 0)
+            return;
+
+        switch (SelectedChart)
+        {
+            case ChartType.Temperature:
+                BuildTemperatureChart();
+                break;
+
+            case ChartType.WindSpeed:
+                BuildWindChart();
+                break;
+
+            case ChartType.Visibility:
+                BuildVisibilityChart();
+                break;
+
+            case ChartType.PrecipitationAmount:
+                BuildPrecipitationAmountChart();
+                break;
+
+            case ChartType.PrecipitationProbability:
+                BuildPrecipitationProbabilityChart();
+                break;
+        }
+    }
+
+    private void BuildTemperatureChart()
     {
         TemperatureSeries =
         [
@@ -191,7 +234,7 @@ public class MainViewModel : ViewModelBase
 
                 LineSmoothness = graphLineSmoothness,
 
-                Values = weather
+                Values = _weatherHistory
                     .Select(x => x.Temperature)
                     .ToArray()
             }
@@ -201,7 +244,7 @@ public class MainViewModel : ViewModelBase
         [
             new Axis
             {
-                Labels = weather
+                Labels = _weatherHistory
                     .Select(x => $"{x.Date:dd.MM}\n{GetPeriodShortName(x.Period)}")
                     .ToArray(),
 
@@ -227,6 +270,22 @@ public class MainViewModel : ViewModelBase
         OnPropertyChanged(nameof(YAxes));
     }
 
+    private void BuildWindChart()
+    {
+    }
+
+    private void BuildVisibilityChart()
+    {
+    }
+
+    private void BuildPrecipitationAmountChart()
+    {
+    }
+
+    private void BuildPrecipitationProbabilityChart()
+    {
+    }
+
     private static string GetPeriodShortName(DayPeriod period)
     {
         return period switch
@@ -237,5 +296,17 @@ public class MainViewModel : ViewModelBase
             DayPeriod.Night => "Н",
             _ => string.Empty
         };
+    }
+
+    public ChartType SelectedChart
+    {
+        get => _selectedChart;
+        set
+        {
+            if (SetProperty(ref _selectedChart, value))
+            {
+                UpdateChart();
+            }
+        }
     }
 }
