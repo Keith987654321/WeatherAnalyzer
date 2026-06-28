@@ -217,6 +217,7 @@
 
                     <DataGrid
                 AutoGenerateColumns="False"
+                ColumnWidth="*"
                 IsReadOnly="True"
                 CanUserAddRows="False"
                 CanUserDeleteRows="False"
