@@ -21,12 +21,11 @@ public class WeatherStatisticsAnalyzer : IWeatherAnalyzer
             AverageTemperature = Round(data.Average(x => x.Temperature)),
             MinimumTemperature = data.Min(x => x.Temperature),
             MaximumTemperature = data.Max(x => x.Temperature),
-
-            AverageHumidity = Round(data.Average(x => x.Humidity)),
-            AveragePressure = Round(data.Average(x => x.Pressure)),
             AverageWindSpeed = Round(data.Average(x => x.WindSpeed)),
-
-            RecordsCount = data.Count
+            RecordsCount = data.Count,
+            AverageVisibility = weatherData.Average(x => x.Visibility),
+            AveragePrecipitationAmount = weatherData.Average(x => x.PrecipitationAmount),
+            AveragePrecipitationProbability = weatherData.Average(x => x.PrecipitationProbability)
         };
     }
     private static double Round(double value)

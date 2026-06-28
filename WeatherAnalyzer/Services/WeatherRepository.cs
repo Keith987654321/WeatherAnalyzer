@@ -44,11 +44,10 @@ public class WeatherRepository : IWeatherRepository
             else
             {
                 existingItem.Temperature = newItem.Temperature;
-                existingItem.Humidity = newItem.Humidity;
-                existingItem.Pressure = newItem.Pressure;
                 existingItem.WindSpeed = newItem.WindSpeed;
                 existingItem.Visibility = newItem.Visibility;
-                existingItem.Precipitation = newItem.Precipitation;
+                existingItem.PrecipitationAmount = newItem.PrecipitationAmount;
+                existingItem.PrecipitationProbability = newItem.PrecipitationProbability;
                 existingItem.Description = newItem.Description;
                 //existingItem.Period = newItem.Period;
             }

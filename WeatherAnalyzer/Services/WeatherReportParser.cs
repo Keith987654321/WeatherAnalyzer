@@ -76,13 +76,19 @@ public class WeatherReportParser : IWeatherReportParser
         return int.Parse(match.Value);
     }
 
-    private static double ParsePrecipitation(string value)
+    private static (double amount, int probability)
+        ParsePrecipitation(string value)
     {
-        var match = Regex.Match(value, @"\d+\.\d+");
+        var parts = value.Split('|');
 
-        return double.Parse(
-            match.Value,
+        var amount = double.Parse(
+            Regex.Match(parts[0], @"\d+\.\d+").Value,
             CultureInfo.InvariantCulture);
+
+        var probability = int.Parse(
+            Regex.Match(parts[1], @"\d+").Value);
+
+        return (amount, probability);
     }
 
     private static DateOnly ParseDate(string value)
@@ -146,6 +152,8 @@ public class WeatherReportParser : IWeatherReportParser
 
             for (int j = 0; j < 4; j++)
             {
+                var precipitation = ParsePrecipitation(rains[j].Value);
+
                 var weather = new WeatherData
                 {
                     City = city,
@@ -160,7 +168,9 @@ public class WeatherReportParser : IWeatherReportParser
 
                     Visibility = ParseVisibility(visibility[j].Value),
 
-                    Precipitation = ParsePrecipitation(rains[j].Value),
+                    PrecipitationAmount = precipitation.amount,
+
+                    PrecipitationProbability = precipitation.probability,
 
                     Description = string.Empty
                 };

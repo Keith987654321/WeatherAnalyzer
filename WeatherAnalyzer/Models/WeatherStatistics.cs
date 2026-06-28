@@ -8,17 +8,19 @@ namespace WeatherAnalyzer.Models;
 
 public class WeatherStatistics
 {
-    public double AverageTemperature { get; init; }
+    public double AverageTemperature { get; set; }
 
-    public double MinimumTemperature { get; init; }
+    public double MinimumTemperature { get; set; }
 
-    public double MaximumTemperature { get; init; }
+    public double MaximumTemperature { get; set; }
 
-    public double AverageHumidity { get; init; }
+    public double AverageWindSpeed { get; set; }
 
-    public double AveragePressure { get; init; }
+    public double AverageVisibility { get; set; }
 
-    public double AverageWindSpeed { get; init; }
+    public double AveragePrecipitationAmount { get; set; }
 
-    public int RecordsCount { get; init; }
+    public double AveragePrecipitationProbability { get; set; }
+
+    public int RecordsCount { get; set; }
 }

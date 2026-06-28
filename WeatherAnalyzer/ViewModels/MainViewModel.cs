@@ -3,6 +3,7 @@ using WeatherAnalyzer.Models;
 using WeatherAnalyzer.Services;
 using WeatherAnalyzer.Services.Interfaces;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace WeatherAnalyzer.ViewModels;
 
@@ -31,15 +32,18 @@ public class MainViewModel : ViewModelBase
     private readonly IWeatherReportDownloader _downloader;
     private readonly IWeatherReportParser _parser;
 
-    
+
+    public ObservableCollection<WeatherData> WeatherRecords { get; }
+    = []; 
 
     private void NotifyStatisticsChanged()
     {
         OnPropertyChanged(nameof(AverageTemperature));
         OnPropertyChanged(nameof(MinimumTemperature));
         OnPropertyChanged(nameof(MaximumTemperature));
-        OnPropertyChanged(nameof(AverageHumidity));
-        OnPropertyChanged(nameof(AveragePressure));
+        OnPropertyChanged(nameof(AverageVisibility));
+        OnPropertyChanged(nameof(AveragePrecipitationAmount));
+        OnPropertyChanged(nameof(AveragePrecipitationProbability));
         OnPropertyChanged(nameof(AverageWindSpeed));
         OnPropertyChanged(nameof(RecordsCount));
     }
@@ -65,11 +69,14 @@ public class MainViewModel : ViewModelBase
     public double MaximumTemperature =>
         Statistics?.MaximumTemperature ?? 0;
 
-    public double AverageHumidity =>
-        Statistics?.AverageHumidity ?? 0;
+    public double AverageVisibility =>
+        Statistics?.AverageVisibility ?? 0;
 
-    public double AveragePressure =>
-        Statistics?.AveragePressure ?? 0;
+    public double AveragePrecipitationAmount =>
+        Statistics?.AveragePrecipitationAmount ?? 0;
+
+    public double AveragePrecipitationProbability =>
+        Statistics?.AveragePrecipitationProbability ?? 0;
 
     public double AverageWindSpeed =>
         Statistics?.AverageWindSpeed ?? 0;
@@ -106,6 +113,12 @@ public class MainViewModel : ViewModelBase
             await _repository.SaveAsync(weatherData);
             var history = await _repository.LoadAsync(City);
             Statistics = _analyzer.Analyze(history);
+            WeatherRecords.Clear();
+
+            foreach (var item in history)
+            {
+                WeatherRecords.Add(item);
+            }
 
             Status = $"Загружено {history.Count} записей.";
         }

@@ -11,11 +11,9 @@ public class WeatherData
 
     public int WindSpeed { get; set; }
 
-    public int Humidity { get; set; }
+    public double PrecipitationAmount { get; set; }
 
-    public int Pressure { get; set; }
-
-    public double Precipitation { get; set; }
+    public int PrecipitationProbability { get; set; }
 
     public int Visibility { get; set; }
 
