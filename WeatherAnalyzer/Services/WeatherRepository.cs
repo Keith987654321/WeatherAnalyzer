@@ -33,7 +33,9 @@ public class WeatherRepository : IWeatherRepository
         foreach (var newItem in newData)
         {
             var existingItem = existingData.FirstOrDefault(
-                item => item.Date == newItem.Date);
+            item =>
+                item.Date == newItem.Date &&
+                item.Period == newItem.Period);
 
             if (existingItem is null)
             {
@@ -45,6 +47,10 @@ public class WeatherRepository : IWeatherRepository
                 existingItem.Humidity = newItem.Humidity;
                 existingItem.Pressure = newItem.Pressure;
                 existingItem.WindSpeed = newItem.WindSpeed;
+                existingItem.Visibility = newItem.Visibility;
+                existingItem.Precipitation = newItem.Precipitation;
+                existingItem.Description = newItem.Description;
+                //existingItem.Period = newItem.Period;
             }
         }
 
