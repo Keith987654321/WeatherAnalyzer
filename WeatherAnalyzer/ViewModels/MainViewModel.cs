@@ -31,6 +31,8 @@ public class MainViewModel : ViewModelBase
     private readonly IWeatherReportDownloader _downloader;
     private readonly IWeatherReportParser _parser;
 
+    
+
     private void NotifyStatisticsChanged()
     {
         OnPropertyChanged(nameof(AverageTemperature));
@@ -100,10 +102,12 @@ public class MainViewModel : ViewModelBase
             var report = await _downloader.DownloadAsync(City);
 
             report = AnsiTextCleaner.Clean(report);
-            var weatherData = _parser.Parse(report);
-            Status = report[..Math.Min(report.Length, 300)];
+            var weatherData = _parser.Parse(City, report);
+            await _repository.SaveAsync(weatherData);
+            var history = await _repository.LoadAsync(City);
+            Statistics = _analyzer.Analyze(history);
 
-            // await File.WriteAllTextAsync("CleanedResponse.txt", report);
+            Status = $"Загружено {history.Count} записей.";
         }
         catch (Exception ex)
         {
