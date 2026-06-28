@@ -1,12 +1,12 @@
 ﻿<Window x:Class="WeatherAnalyzer.Views.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
-        Title="Weather Analyzer"
-        Height="875"
-        Width="1000"
-        MinHeight="700"
-        MinWidth="800">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+    Title="Weather Analyzer"
+    Height="875"
+    Width="1000"
+    MinHeight="700"
+    MinWidth="800">
 
     <Grid Margin="20">
 
@@ -32,33 +32,33 @@
         <!-- Заголовок -->
 
         <StackPanel
-            Grid.Row="0"
-            Margin="0,0,0,20">
+        Grid.Row="0"
+        Margin="0,0,0,20">
 
             <TextBlock
-                HorizontalAlignment="Center"
-                FontSize="28"
-                FontWeight="SemiBold"
-                Text="Weather Analyzer"/>
+            HorizontalAlignment="Center"
+            FontSize="28"
+            FontWeight="SemiBold"
+            Text="Weather Analyzer"/>
 
             <TextBlock
-                HorizontalAlignment="Center"
-                Margin="0,5,0,0"
-                Foreground="Gray"
-                Text="Анализ погодных данных"/>
+            HorizontalAlignment="Center"
+            Margin="0,5,0,0"
+            Foreground="Gray"
+            Text="Анализ погодных данных"/>
 
         </StackPanel>
 
         <!-- Поиск -->
 
         <StackPanel
-            Grid.Row="1"
-            Margin="0,0,0,20">
+        Grid.Row="1"
+        Margin="0,0,0,20">
 
             <TextBlock
-                Margin="0,0,0,5"
-                FontWeight="SemiBold"
-                Text="Город"/>
+            Margin="0,0,0,5"
+            FontWeight="SemiBold"
+            Text="Город"/>
 
             <Grid>
 
@@ -68,17 +68,17 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox
-                    Grid.Column="0"
-                    Height="32"
-                    Margin="0,0,10,0"
-                    VerticalContentAlignment="Center"
-                    Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"/>
+                Grid.Column="0"
+                Height="32"
+                Margin="0,0,10,0"
+                VerticalContentAlignment="Center"
+                Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Button
-                    Grid.Column="1"
-                    Width="120"
-                    Content="Загрузить"
-                    Command="{Binding LoadWeatherCommand}"/>
+                Grid.Column="1"
+                Width="120"
+                Content="Загрузить"
+                Command="{Binding LoadWeatherCommand}"/>
 
             </Grid>
 
@@ -87,30 +87,30 @@
         <!-- Статус -->
 
         <TextBlock
-            Grid.Row="2"
-            Margin="0,0,0,20"
-            Foreground="DarkSlateGray"
-            Text="{Binding Status}"/>
+        Grid.Row="2"
+        Margin="0,0,0,20"
+        Foreground="DarkSlateGray"
+        Text="{Binding Status}"/>
 
 
         <!-- Статистика -->
 
         <Border
-    Grid.Row="3"
-    Margin="0,0,0,20"
-    Padding="15"
-    BorderBrush="#D0D0D0"
-    BorderThickness="1"
-    CornerRadius="8">
+Grid.Row="3"
+Margin="0,0,0,20"
+Padding="15"
+BorderBrush="#D0D0D0"
+BorderThickness="1"
+CornerRadius="8">
 
             <DockPanel>
 
                 <TextBlock
-            DockPanel.Dock="Top"
-            Margin="0,0,0,15"
-            FontSize="18"
-            FontWeight="SemiBold"
-            Text="Статистика"/>
+        DockPanel.Dock="Top"
+        Margin="0,0,0,15"
+        FontSize="18"
+        FontWeight="SemiBold"
+        Text="Статистика"/>
 
                 <Grid>
 
@@ -131,56 +131,56 @@
 
                     <TextBlock Margin="0,4" Text="Средняя температура"/>
                     <TextBlock Grid.Column="1"
-                       Margin="0,4"
-                       Text="{Binding AverageTemperature, StringFormat={}{0:F1} °C}"/>
+                    Margin="0,4"
+                    Text="{Binding AverageTemperature, StringFormat={}{0:F1} °C}"/>
 
                     <TextBlock Grid.Row="1"
-                       Margin="0,4"
-                       Text="Минимальная температура"/>
+                    Margin="0,4"
+                    Text="Минимальная температура"/>
                     <TextBlock Grid.Row="1"
-                       Grid.Column="1"
-                       Margin="0,4"
-                       Text="{Binding MinimumTemperature, StringFormat={}{0:F1} °C}"/>
+                    Grid.Column="1"
+                    Margin="0,4"
+                    Text="{Binding MinimumTemperature, StringFormat={}{0:F1} °C}"/>
 
                     <TextBlock Grid.Row="2"
-                       Margin="0,4"
-                       Text="Максимальная температура"/>
+                    Margin="0,4"
+                    Text="Максимальная температура"/>
                     <TextBlock Grid.Row="2"
-                       Grid.Column="1"
-                       Margin="0,4"
-                       Text="{Binding MaximumTemperature, StringFormat={}{0:F1} °C}"/>
+                    Grid.Column="1"
+                    Margin="0,4"
+                    Text="{Binding MaximumTemperature, StringFormat={}{0:F1} °C}"/>
 
                     <TextBlock Grid.Row="3"
-                       Margin="0,4"
-                       Text="Средняя скорость ветра"/>
+                    Margin="0,4"
+                    Text="Средняя скорость ветра"/>
                     <TextBlock Grid.Row="3"
-                       Grid.Column="1"
-                       Margin="0,4"
-                       Text="{Binding AverageWindSpeed, StringFormat={}{0:F1} км/ч}"/>
+                    Grid.Column="1"
+                    Margin="0,4"
+                    Text="{Binding AverageWindSpeed, StringFormat={}{0:F1} км/ч}"/>
 
                     <TextBlock Grid.Row="4"
-                       Margin="0,4"
-                       Text="Средняя видимость"/>
+                    Margin="0,4"
+                    Text="Средняя видимость"/>
                     <TextBlock Grid.Row="4"
-                       Grid.Column="1"
-                       Margin="0,4"
-                       Text="{Binding AverageVisibility, StringFormat={}{0:F1} км}"/>
+                    Grid.Column="1"
+                    Margin="0,4"
+                    Text="{Binding AverageVisibility, StringFormat={}{0:F1} км}"/>
 
                     <TextBlock Grid.Row="5"
-                       Margin="0,4"
-                       Text="Среднее количество осадков"/>
+                    Margin="0,4"
+                    Text="Среднее количество осадков"/>
                     <TextBlock Grid.Row="5"
-                       Grid.Column="1"
-                       Margin="0,4"
-                       Text="{Binding AveragePrecipitationAmount, StringFormat={}{0:F1} мм}"/>
+                    Grid.Column="1"
+                    Margin="0,4"
+                    Text="{Binding AveragePrecipitationAmount, StringFormat={}{0:F1} мм}"/>
 
                     <TextBlock Grid.Row="6"
-                       Margin="0,4"
-                       Text="Средняя вероятность осадков"/>
+                    Margin="0,4"
+                    Text="Средняя вероятность осадков"/>
                     <TextBlock Grid.Row="6"
-                       Grid.Column="1"
-                       Margin="0,4"
-                       Text="{Binding AveragePrecipitationProbability, StringFormat={}{0:F1} %}"/>
+                    Grid.Column="1"
+                    Margin="0,4"
+                    Text="{Binding AveragePrecipitationProbability, StringFormat={}{0:F1} %}"/>
 
                 </Grid>
 
@@ -200,65 +200,65 @@
             <!-- Таблица -->
 
             <Border
-        Grid.Column="0"
-        Margin="0,0,10,0"
-        Padding="10"
-        BorderBrush="#DDDDDD"
-        BorderThickness="1"
-        CornerRadius="8">
+    Grid.Column="0"
+    Margin="0,0,10,0"
+    Padding="10"
+    BorderBrush="#DDDDDD"
+    BorderThickness="1"
+    CornerRadius="8">
 
                 <DockPanel>
 
                     <TextBlock
-                DockPanel.Dock="Top"
-                Margin="0,0,0,10"
-                FontSize="18"
-                FontWeight="SemiBold"
-                Text="Прогноз"/>
+            DockPanel.Dock="Top"
+            Margin="0,0,0,10"
+            FontSize="18"
+            FontWeight="SemiBold"
+            Text="Прогноз"/>
 
                     <DataGrid
-                AutoGenerateColumns="False"
-                ColumnWidth="*"
-                IsReadOnly="True"
-                CanUserAddRows="False"
-                CanUserDeleteRows="False"
-                CanUserResizeRows="False"
-                HeadersVisibility="Column"
-                SelectionMode="Single"
-                ScrollViewer.VerticalScrollBarVisibility="Auto"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                ItemsSource="{Binding WeatherRecords}">
+            AutoGenerateColumns="False"
+            ColumnWidth="*"
+            IsReadOnly="True"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserResizeRows="False"
+            HeadersVisibility="Column"
+            SelectionMode="Single"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            ItemsSource="{Binding WeatherRecords}">
 
                         <DataGrid.Columns>
 
                             <DataGridTextColumn
-                            Header="Дата"
-                            Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}" />
+                        Header="Дата"
+                        Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}" />
 
                             <DataGridTextColumn
-                            Header="Период"
-                            Binding="{Binding PeriodName}" />
+                        Header="Период"
+                        Binding="{Binding PeriodName}" />
 
                             <DataGridTextColumn
-                            Header="Темп."
-                            Binding="{Binding Temperature, StringFormat={}{0} °C}" />
+                        Header="Темп."
+                        Binding="{Binding Temperature, StringFormat={}{0} °C}" />
 
                             <DataGridTextColumn
-                            Header="Ветер"
-                            Binding="{Binding WindSpeed, StringFormat={}{0} км/ч}" />
+                        Header="Ветер"
+                        Binding="{Binding WindSpeed, StringFormat={}{0} км/ч}" />
 
                             <DataGridTextColumn
-                            Header="Видимость"
-                            Binding="{Binding Visibility, StringFormat={}{0} км}" />
+                        Header="Видимость"
+                        Binding="{Binding Visibility, StringFormat={}{0} км}" />
 
                             <DataGridTextColumn
-                            Header="Осадки"
-                            Binding="{Binding PrecipitationAmount, StringFormat={}{0:F1} мм}" />
+                        Header="Осадки"
+                        Binding="{Binding PrecipitationAmount, StringFormat={}{0:F1} мм}" />
 
                             <DataGridTextColumn
-                            Header="Вероят-ть"
-                            Binding="{Binding PrecipitationProbability, StringFormat={}{0}%}" />
+                        Header="Вероят-ть"
+                        Binding="{Binding PrecipitationProbability, StringFormat={}{0}%}" />
 
                         </DataGrid.Columns>
                     </DataGrid>
@@ -270,30 +270,44 @@
             <!-- График -->
 
             <Border
-        Grid.Column="1"
-        Margin="10,0,0,0"
-        Padding="10"
-        BorderBrush="#DDDDDD"
-        BorderThickness="1"
-        CornerRadius="8">
+    Grid.Column="1"
+    Margin="10,0,0,0"
+    Padding="10"
+    BorderBrush="#DDDDDD"
+    BorderThickness="1"
+    CornerRadius="8">
 
-                <DockPanel>
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
                     <TextBlock
-                DockPanel.Dock="Top"
-                Margin="0,0,0,10"
-                FontSize="18"
-                FontWeight="SemiBold"
-                Text="График"/>
+                        Grid.Row="0"
+                        Margin="0,0,0,10"
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        Text="График"/>
+
+                    <ComboBox
+                        Grid.Row="1"
+                        Width="220"
+                        Margin="0,0,0,10"
+                        HorizontalAlignment="Left"
+                        ItemsSource="{Binding AvailableCharts}"
+                        SelectedItem="{Binding SelectedChart}"/>
 
                     <lvc:CartesianChart
+                        Grid.Row="2"
                         Margin="5"
-                        LegendTextSize="10"
                         Series="{Binding TemperatureSeries}"
                         XAxes="{Binding XAxes}"
-                        YAxes="{Binding YAxes}" />
+                        YAxes="{Binding YAxes}"/>
 
-                </DockPanel>
+                </Grid>
 
             </Border>
 
