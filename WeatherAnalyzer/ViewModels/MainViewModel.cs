@@ -4,6 +4,8 @@ using WeatherAnalyzer.Services;
 using WeatherAnalyzer.Services.Interfaces;
 using System.IO;
 using System.Collections.ObjectModel;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
 
 namespace WeatherAnalyzer.ViewModels;
 
@@ -34,7 +36,13 @@ public class MainViewModel : ViewModelBase
 
 
     public ObservableCollection<WeatherData> WeatherRecords { get; }
-    = []; 
+    = [];
+
+    public ISeries[] TemperatureSeries { get; private set; } = [];
+
+    public Axis[] XAxes { get; private set; } = [];
+
+    public Axis[] YAxes { get; private set; } = [];
 
     private void NotifyStatisticsChanged()
     {
@@ -113,6 +121,7 @@ public class MainViewModel : ViewModelBase
             await _repository.SaveAsync(weatherData);
             var history = await _repository.LoadAsync(City);
             Statistics = _analyzer.Analyze(history);
+            BuildTemperatureChart(history);
             WeatherRecords.Clear();
 
             foreach (var item in history)
@@ -134,5 +143,20 @@ public class MainViewModel : ViewModelBase
     {
         get => _status;
         set => SetProperty(ref _status, value);
+    }
+
+    private void BuildTemperatureChart(List<WeatherData> weather)
+    {
+        TemperatureSeries =
+        [
+            new LineSeries<int>
+        {
+            Values = weather
+                .Select(x => x.Temperature)
+                .ToArray()
+        }
+        ];
+
+        OnPropertyChanged(nameof(TemperatureSeries));
     }
 }
