@@ -11,6 +11,6 @@ namespace WeatherAnalyzer.Services.Interfaces;
 
 public interface IWeatherReportParser
 {
-    List<WeatherData> Parse(string report);
+    List<WeatherData> Parse(string city, string report);
 
 }

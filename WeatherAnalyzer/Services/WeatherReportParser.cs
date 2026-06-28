@@ -95,7 +95,7 @@ public class WeatherReportParser : IWeatherReportParser
             CultureInfo.InvariantCulture);
     }
 
-    public List<WeatherData> Parse(string report)
+    public List<WeatherData> Parse(string city, string report)
     {
         var result = new List<WeatherData>();
         var lines = SplitLines(report);
@@ -148,6 +148,8 @@ public class WeatherReportParser : IWeatherReportParser
             {
                 var weather = new WeatherData
                 {
+                    City = city,
+
                     Date = ParseDate(currentDay!),
 
                     Period = (DayPeriod)j,
