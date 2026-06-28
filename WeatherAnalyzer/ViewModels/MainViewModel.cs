@@ -11,11 +11,13 @@ public class MainViewModel : ViewModelBase
     public MainViewModel(
     IWeatherRepository repository,
     IWeatherAnalyzer analyzer,
-    IWeatherReportDownloader downloader)
+    IWeatherReportDownloader downloader,
+    IWeatherReportParser parser)
     {
         _repository = repository;
         _analyzer = analyzer;
         _downloader = downloader;
+        _parser = parser;
 
         LoadWeatherCommand = new RelayCommand(LoadWeatherAsync);
 
@@ -27,6 +29,7 @@ public class MainViewModel : ViewModelBase
     private readonly IWeatherRepository _repository;
     private readonly IWeatherAnalyzer _analyzer;
     private readonly IWeatherReportDownloader _downloader;
+    private readonly IWeatherReportParser _parser;
 
     private void NotifyStatisticsChanged()
     {
@@ -97,10 +100,10 @@ public class MainViewModel : ViewModelBase
             var report = await _downloader.DownloadAsync(City);
 
             report = AnsiTextCleaner.Clean(report);
-
+            var weatherData = _parser.Parse(report);
             Status = report[..Math.Min(report.Length, 300)];
 
-            await File.WriteAllTextAsync("CleanedResponse.txt", report);
+            // await File.WriteAllTextAsync("CleanedResponse.txt", report);
         }
         catch (Exception ex)
         {
