@@ -12,14 +12,21 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <!-- Заголовок -->
+
             <RowDefinition Height="Auto"/>
             <!-- Поиск -->
+
             <RowDefinition Height="Auto"/>
             <!-- Статус -->
-            <RowDefinition Height="auto"/>
+
+            <RowDefinition Height="Auto"/>
             <!-- Статистика -->
+
+            <RowDefinition Height="2*"/>
+            <!-- Таблица -->
+
             <RowDefinition Height="*"/>
-            <!-- Графика -->
+            <!-- График -->
         </Grid.RowDefinitions>
 
         <!-- Заголовок -->
@@ -81,7 +88,7 @@
             </Grid>
 
         </StackPanel>
-
+        
         <!-- Статистика -->
 
         <Border
@@ -128,7 +135,7 @@
                     <TextBlock Grid.Row="2" Grid.Column="1" Margin="0,4" Text="{Binding MaximumTemperature, StringFormat={}{0:F1} °C}"/>
 
                     <TextBlock Grid.Row="3" Margin="0,4" Text="Средняя скорость ветра"/>
-                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="0,4" Text="{Binding AverageWindSpeed, StringFormat={}{0:F1} м/c}"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="0,4" Text="{Binding AverageWindSpeed, StringFormat={}{0:F1} км/ч}"/>
 
                     <TextBlock Grid.Row="4" Margin="0,4" Text="Средняя видимость"/>
                     <TextBlock Grid.Row="4" Grid.Column="1" Margin="0,4" Text="{Binding AverageVisibility, StringFormat={}{0:F1} км}"/>
@@ -143,11 +150,71 @@
             </DockPanel>
 
         </Border>
-       
+        <!-- Таблица -->
+
+        <DataGrid
+    Grid.Row="4"
+    Width="530"
+    HorizontalAlignment="Center"
+    Margin="0,0,0,20"
+    AutoGenerateColumns="False"
+    IsReadOnly="True"
+    CanUserAddRows="False"
+    CanUserDeleteRows="False"
+    CanUserResizeRows="False"
+    HeadersVisibility="Column"
+    SelectionMode="Single"
+    ScrollViewer.VerticalScrollBarVisibility="Auto"
+    ItemsSource="{Binding WeatherRecords}">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn
+            Header="Дата"
+            Binding="{Binding Date,
+                      StringFormat={}{0:dd.MM.yyyy}}" />
+
+                <DataGridTextColumn
+            Header="Период"
+            Binding="{Binding PeriodName}" />
+
+                <DataGridTextColumn
+            Header="Описание"
+            Binding="{Binding Description}" />
+
+                <DataGridTextColumn
+            Header="Температура"
+            Binding="{Binding Temperature,
+                      StringFormat={}{0} °C}" />
+
+                <DataGridTextColumn
+            Header="Ветер"
+            Binding="{Binding WindSpeed,
+                      StringFormat={}{0} км/ч}" />
+
+                <DataGridTextColumn
+            Header="Видимость"
+            Binding="{Binding Visibility,
+                      StringFormat={}{0} км}" />
+
+                <DataGridTextColumn
+            Header="Осадки"
+            Binding="{Binding PrecipitationAmount,
+                      StringFormat={}{0:F1} мм}" />
+
+                <DataGridTextColumn
+            Header="Вероятность"
+            Binding="{Binding PrecipitationProbability,
+                      StringFormat={}{0}%}" />
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
         <!-- Область графика -->
 
         <Border
-            Grid.Row="4"
+            Grid.Row="5"
             Padding="10"
             BorderBrush="#D0D0D0"
             BorderThickness="1"

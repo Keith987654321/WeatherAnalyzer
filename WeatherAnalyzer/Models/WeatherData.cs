@@ -18,4 +18,6 @@ public class WeatherData
     public int Visibility { get; set; }
 
     public string Description { get; set; } = string.Empty;
+
+    public string PeriodName => Period.ToDisplayString();
 }

@@ -13,3 +13,18 @@ public enum DayPeriod
     Evening,
     Night
 }
+
+public static class DayPeriodExtensions
+{
+    public static string ToDisplayString(this DayPeriod period)
+    {
+        return period switch
+        {
+            DayPeriod.Morning => "Утро",
+            DayPeriod.Noon => "День",
+            DayPeriod.Evening => "Вечер",
+            DayPeriod.Night => "Ночь",
+            _ => period.ToString()
+        };
+    }
+}
