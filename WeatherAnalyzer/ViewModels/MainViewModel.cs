@@ -2,6 +2,7 @@
 using WeatherAnalyzer.Models;
 using WeatherAnalyzer.Services;
 using WeatherAnalyzer.Services.Interfaces;
+using System.IO;
 
 namespace WeatherAnalyzer.ViewModels;
 
@@ -10,7 +11,7 @@ public class MainViewModel : ViewModelBase
     public MainViewModel(
     IWeatherRepository repository,
     IWeatherAnalyzer analyzer,
-    IWeatherHtmlDownloader downloader)
+    IWeatherReportDownloader downloader)
     {
         _repository = repository;
         _analyzer = analyzer;
@@ -25,7 +26,7 @@ public class MainViewModel : ViewModelBase
 
     private readonly IWeatherRepository _repository;
     private readonly IWeatherAnalyzer _analyzer;
-    private readonly IWeatherHtmlDownloader _downloader;
+    private readonly IWeatherReportDownloader _downloader;
 
     private void NotifyStatisticsChanged()
     {
@@ -93,9 +94,13 @@ public class MainViewModel : ViewModelBase
         {
             Status = "Загрузка данных...";
 
-            var html = await _downloader.DownloadAsync(City);
+            var report = await _downloader.DownloadAsync(City);
 
-            Status = $"Получено {html.Length:N0} символов.";
+            report = AnsiTextCleaner.Clean(report);
+
+            Status = report[..Math.Min(report.Length, 300)];
+
+            await File.WriteAllTextAsync("CleanedResponse.txt", report);
         }
         catch (Exception ex)
         {

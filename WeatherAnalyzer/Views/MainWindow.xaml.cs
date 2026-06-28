@@ -27,7 +27,7 @@ namespace WeatherAnalyzer.Views
             DataContext = new MainViewModel(
                 new WeatherRepository(),
                 new WeatherStatisticsAnalyzer(),
-                new WeatherHtmlDownloader());
+                new WeatherReportDownloader());
         }
     }
 }

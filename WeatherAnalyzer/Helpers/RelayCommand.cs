@@ -45,32 +45,32 @@ public class RelayCommand : ICommand
     }
 
     public async void Execute(object? parameter)
+{
+    if (_isExecuting)
     {
-        if (_isExecuting)
-        {
-            return;
-        }
+        return;
+    }
 
-        try
-        {
-            _isExecuting = true;
-            RaiseCanExecuteChanged();
+    try
+    {
+        _isExecuting = true;
+        RaiseCanExecuteChanged();
 
-            if (_execute is not null)
-            {
-                _execute();
-            }
-            else if (_executeAsync is not null)
-            {
-                await _executeAsync();
-            }
-        }
-        finally
+        if (_execute is not null)
         {
-            _isExecuting = false;
-            RaiseCanExecuteChanged();
+            _execute();
+        }
+        else if (_executeAsync is not null)
+        {
+            await _executeAsync();
         }
     }
+    finally
+    {
+        _isExecuting = false;
+        RaiseCanExecuteChanged();
+    }
+}
 
     public void RaiseCanExecuteChanged()
     {

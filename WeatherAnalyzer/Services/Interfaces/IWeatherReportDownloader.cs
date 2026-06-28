@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using WeatherAnalyzer.Models;
-
 namespace WeatherAnalyzer.Services.Interfaces;
 
-public interface IWeatherParser
+public interface IWeatherReportDownloader
 {
-    List<WeatherData> Parse(string html, string city);
+    Task<string> DownloadAsync(string city);
 }
