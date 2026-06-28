@@ -33,7 +33,7 @@ public class WeatherRepository : IWeatherRepository
         foreach (var newItem in newData)
         {
             var existingItem = existingData.FirstOrDefault(
-                item => item.Date.Date == newItem.Date.Date);
+                item => item.Date == newItem.Date);
 
             if (existingItem is null)
             {
