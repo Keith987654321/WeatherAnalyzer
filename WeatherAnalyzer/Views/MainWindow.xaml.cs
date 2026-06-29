@@ -26,7 +26,8 @@ namespace WeatherAnalyzer.Views
                 new WeatherRepository(),
                 new WeatherStatisticsAnalyzer(),
                 new WeatherReportDownloader(),
-                new WeatherReportParser());
+                new WeatherReportParser(),
+                new ThemeManager());
         }
     }
 }

@@ -73,6 +73,7 @@ public class MainViewModel : ViewModelBase
     private readonly IThemeManager _themeManager;
 
     private List<WeatherData> _weatherHistory = [];
+    private AppTheme _selectedTheme = AppTheme.Light;
 
     public ObservableCollection<WeatherData> WeatherRecords { get; }
     = [];
@@ -332,4 +333,32 @@ public class MainViewModel : ViewModelBase
             }
         }
     }
+
+    public IReadOnlyList<AppTheme> AvailableThemes { get; } =
+    [
+        AppTheme.Light,
+        AppTheme.Dark
+    ];
+
+    public AppTheme SelectedTheme
+    {
+        get => _selectedTheme;
+        set
+        {
+            if (SetProperty(ref _selectedTheme, value))
+            {
+                switch (value)
+                {
+                    case AppTheme.Light:
+                        _themeManager.SetLightTheme();
+                        break;
+
+                    case AppTheme.Dark:
+                        _themeManager.SetDarkTheme();
+                        break;
+                }
+            }
+        }
+    }
+
 }

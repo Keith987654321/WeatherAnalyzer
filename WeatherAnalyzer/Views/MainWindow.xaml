@@ -31,23 +31,37 @@
 
         <!-- Заголовок -->
 
-        <StackPanel
-        Grid.Row="0"
-        Margin="0,0,0,20">
+        <Grid Grid.Row="0" Margin="0,0,0,20">
 
-            <TextBlock
-            HorizontalAlignment="Center"
-            FontSize="28"
-            FontWeight="SemiBold"
-            Text="Weather Analyzer"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-            <TextBlock
-            HorizontalAlignment="Center"
-            Margin="0,5,0,0"
-            Foreground="Gray"
-            Text="Анализ погодных данных"/>
+            <StackPanel>
 
-        </StackPanel>
+                <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="28"
+                FontWeight="SemiBold"
+                Text="Weather Analyzer"/>
+
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    Margin="0,5,0,0"
+                    Foreground="Gray"
+                    Text="Анализ погодных данных"/>
+
+            </StackPanel>
+
+            <ComboBox
+                Grid.Column="1"
+                Width="140"
+                VerticalAlignment="Top"
+                ItemsSource="{Binding AvailableThemes}"
+                SelectedItem="{Binding SelectedTheme}"/>
+
+        </Grid>
 
         <!-- Поиск -->
 
