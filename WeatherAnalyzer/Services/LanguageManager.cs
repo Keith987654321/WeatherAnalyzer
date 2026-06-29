@@ -3,19 +3,19 @@ using WeatherAnalyzer.Services.Interfaces;
 
 namespace WeatherAnalyzer.Services;
 
-public class ThemeManager : IThemeManager
+public class LanguageManager : ILanguageManager
 {
-    public void SetLightTheme()
+    public void SetRussian()
     {
-        ApplyTheme("Themes/Light.xaml");
+        ApplyLanguage("Resources/Strings.ru.xaml");
     }
 
-    public void SetDarkTheme()
+    public void SetEnglish()
     {
-        ApplyTheme("Themes/Dark.xaml");
+        ApplyLanguage("Resources/Strings.en.xaml");
     }
 
-    private static void ApplyTheme(string themePath)
+    private static void ApplyLanguage(string languagePath)
     {
         var application = Application.Current;
 
@@ -26,9 +26,10 @@ public class ThemeManager : IThemeManager
 
         var dictionaries = application.Resources.MergedDictionaries;
 
+        // Ищем старый словарь локализации
         var existingDictionary = dictionaries.FirstOrDefault(d =>
             d.Source != null &&
-            d.Source.OriginalString.Contains("Themes/"));
+            d.Source.OriginalString.Contains("Strings."));
 
         if (existingDictionary != null)
         {
@@ -37,7 +38,7 @@ public class ThemeManager : IThemeManager
 
         dictionaries.Add(new ResourceDictionary
         {
-            Source = new Uri(themePath, UriKind.Relative)
+            Source = new Uri(languagePath, UriKind.Relative)
         });
     }
 }

@@ -20,13 +20,15 @@ public class MainViewModel : ViewModelBase
     IWeatherAnalyzer analyzer,
     IWeatherReportDownloader downloader,
     IWeatherReportParser parser,
-    IThemeManager themeManager)
+    IThemeManager themeManager,
+    ILanguageManager languageManager)
     {
         _repository = repository;
         _analyzer = analyzer;
         _downloader = downloader;
         _parser = parser;
         _themeManager = themeManager;
+        _languageManager = languageManager;
 
         LoadWeatherCommand = new RelayCommand(LoadWeatherAsync);
 
@@ -71,6 +73,7 @@ public class MainViewModel : ViewModelBase
     private readonly IWeatherReportDownloader _downloader;
     private readonly IWeatherReportParser _parser;
     private readonly IThemeManager _themeManager;
+    private readonly ILanguageManager _languageManager;
 
     private List<WeatherData> _weatherHistory = [];
     private AppTheme _selectedTheme = AppTheme.Light;
