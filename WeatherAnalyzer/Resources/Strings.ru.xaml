@@ -1,0 +1,32 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="Title">Weather Analyzer</sys:String>
+
+    <sys:String x:Key="Subtitle">
+        Анализ погодных данных
+    </sys:String>
+
+    <sys:String x:Key="City">
+        Город
+    </sys:String>
+
+    <sys:String x:Key="Load">
+        Загрузить
+    </sys:String>
+
+    <sys:String x:Key="Statistics">
+        Статистика
+    </sys:String>
+
+    <sys:String x:Key="Forecast">
+        Прогноз
+    </sys:String>
+
+    <sys:String x:Key="Chart">
+        График
+    </sys:String>
+
+</ResourceDictionary>
