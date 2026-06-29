@@ -143,4 +143,8 @@
             Value="{DynamicResource ComboBoxPopupBackgroundBrush}"/>
 
     </Style>
+
+    <SolidColorBrush
+    x:Key="ComboBoxForegroundBrush"
+    Color="Black"/>
 </ResourceDictionary>

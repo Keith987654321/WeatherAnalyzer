@@ -125,7 +125,7 @@
 				Value="{DynamicResource ControlBackgroundBrush}"/>
 
 		<Setter Property="Foreground"
-				Value="{DynamicResource ControlForegroundBrush}"/>
+				Value="{DynamicResource ComboBoxForegroundBrush}"/>
 
 		<Setter Property="BorderBrush"
 				Value="{DynamicResource BorderBrush}"/>
@@ -136,9 +136,13 @@
 
 	<Style TargetType="ComboBoxItem">
 		<Setter Property="Foreground"
-				Value="{DynamicResource ForegroundBrush}"/>
+				Value="{DynamicResource ComboBoxForegroundBrush}"/>
 
 		<Setter Property="Background"
 				Value="{DynamicResource ComboBoxPopupBackgroundBrush}"/>
 	</Style>
+
+	<SolidColorBrush
+    x:Key="ComboBoxForegroundBrush"
+    Color="#4DA3FF"/>
 </ResourceDictionary>
