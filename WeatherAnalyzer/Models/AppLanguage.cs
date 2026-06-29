@@ -2,6 +2,6 @@
 
 public enum AppLanguage
 {
-    Russian,
+    Русский,
     English
 }
