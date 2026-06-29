@@ -2,15 +2,114 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Color x:Key="BackgroundColor">White</Color>
-    <Color x:Key="ForegroundColor">Black</Color>
+	<!-- Основной фон -->
+	<SolidColorBrush
+        x:Key="WindowBackgroundBrush"
+        Color="White"/>
 
-    <SolidColorBrush
-        x:Key="BackgroundBrush"
-        Color="{StaticResource BackgroundColor}"/>
+	<!-- Фон карточек -->
+	<SolidColorBrush
+        x:Key="CardBackgroundBrush"
+        Color="White"/>
 
-    <SolidColorBrush
+	<!-- Основной текст -->
+	<SolidColorBrush
         x:Key="ForegroundBrush"
-        Color="{StaticResource ForegroundColor}"/>
+        Color="Black"/>
 
+	<!-- Вторичный текст -->
+	<SolidColorBrush
+        x:Key="SecondaryForegroundBrush"
+        Color="Gray"/>
+
+	<!-- Границы -->
+	<SolidColorBrush
+        x:Key="BorderBrush"
+        Color="#D0D0D0"/>
+
+    <SolidColorBrush
+        x:Key="ControlBackgroundBrush"
+        Color="White"/>
+
+    <SolidColorBrush
+        x:Key="ControlForegroundBrush"
+        Color="Black"/>
+
+    <SolidColorBrush
+        x:Key="AccentBrush"
+        Color="#0078D7"/>
+
+    <SolidColorBrush
+    x:Key="DataGridHeaderBackgroundBrush"
+    Color="#F3F3F3"/>
+
+    <SolidColorBrush
+    x:Key="DataGridRowBackgroundBrush"
+    Color="White"/>
+
+    <SolidColorBrush
+    x:Key="DataGridSelectedRowBrush"
+    Color="#D6EBFF"/>
+
+    <SolidColorBrush 
+    x:Key="DataGridGridBrush"
+    Color="#D0D0D0"/>
+
+    <Style TargetType="DataGrid">
+
+        <Setter Property="Background"
+            Value="{DynamicResource DataGridRowBackgroundBrush}"/>
+
+        <Setter Property="Foreground"
+            Value="{DynamicResource ForegroundBrush}"/>
+
+        <Setter Property="BorderBrush"
+            Value="{DynamicResource BorderBrush}"/>
+
+        <Setter Property="GridLinesVisibility"
+            Value="All"/>
+
+        <Setter Property="HorizontalGridLinesBrush"
+            Value="{DynamicResource DataGridGridBrush}"/>
+
+        <Setter Property="VerticalGridLinesBrush"
+            Value="{DynamicResource DataGridGridBrush}"/>
+
+        <Setter Property="RowBackground"
+            Value="{DynamicResource DataGridRowBackgroundBrush}"/>
+
+        <Setter Property="AlternatingRowBackground"
+            Value="{DynamicResource CardBackgroundBrush}"/>
+    </Style>
+
+    <Style TargetType="DataGridColumnHeader">
+
+        <Setter Property="Background"
+            Value="{DynamicResource DataGridHeaderBackgroundBrush}"/>
+
+        <Setter Property="Foreground"
+            Value="{DynamicResource ForegroundBrush}"/>
+
+        <Setter Property="BorderBrush"
+            Value="{DynamicResource BorderBrush}"/>
+
+        <Setter Property="FontWeight"
+            Value="SemiBold"/>
+
+    </Style>
+
+    <Style TargetType="DataGridRow">
+
+        <Setter Property="Background"
+            Value="{DynamicResource DataGridRowBackgroundBrush}"/>
+
+        <Setter Property="Foreground"
+            Value="{DynamicResource ForegroundBrush}"/>
+
+    </Style>
+
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground"
+            Value="{DynamicResource ForegroundBrush}"/>
+    </Style>
 </ResourceDictionary>

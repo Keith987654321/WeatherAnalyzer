@@ -6,7 +6,8 @@
     Height="875"
     Width="1000"
     MinHeight="700"
-    MinWidth="800">
+    MinWidth="800"
+    Background="{DynamicResource WindowBackgroundBrush}">
 
     <Grid Margin="20">
 
@@ -41,15 +42,15 @@
             <StackPanel>
 
                 <TextBlock
-                HorizontalAlignment="Center"
-                FontSize="28"
-                FontWeight="SemiBold"
-                Text="Weather Analyzer"/>
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Foreground="{DynamicResource ForegroundBrush}"
+                    Text="Weather Analyzer"/>
 
                 <TextBlock
                     HorizontalAlignment="Center"
                     Margin="0,5,0,0"
-                    Foreground="Gray"
+                    Foreground="{DynamicResource SecondaryForegroundBrush}"
                     Text="Анализ погодных данных"/>
 
             </StackPanel>
@@ -59,7 +60,10 @@
                 Width="140"
                 VerticalAlignment="Top"
                 ItemsSource="{Binding AvailableThemes}"
-                SelectedItem="{Binding SelectedTheme}"/>
+                SelectedItem="{Binding SelectedTheme}"
+                Background="{DynamicResource ControlBackgroundBrush}"
+                Foreground="{DynamicResource ControlForegroundBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"/>
 
         </Grid>
 
@@ -82,17 +86,22 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox
-                Grid.Column="0"
-                Height="32"
-                Margin="0,0,10,0"
-                VerticalContentAlignment="Center"
-                Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"/>
+                    Height="32"
+                    Margin="0,0,10,0"
+                    VerticalContentAlignment="Center"
+                    Background="{DynamicResource ControlBackgroundBrush}"
+                    Foreground="{DynamicResource ControlForegroundBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    Text="{Binding City, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Button
-                Grid.Column="1"
-                Width="120"
-                Content="Загрузить"
-                Command="{Binding LoadWeatherCommand}"/>
+                    Grid.Column="1"
+                    Width="120"
+                    Background="{DynamicResource AccentBrush}"
+                    Foreground="White"
+                    BorderBrush="{DynamicResource AccentBrush}"
+                    Content="Загрузить"
+                    Command="{Binding LoadWeatherCommand}"/>
 
             </Grid>
 
@@ -103,28 +112,29 @@
         <TextBlock
         Grid.Row="2"
         Margin="0,0,0,20"
-        Foreground="DarkSlateGray"
+        Foreground="{DynamicResource ForegroundBrush}"
         Text="{Binding Status}"/>
 
 
         <!-- Статистика -->
 
         <Border
-Grid.Row="3"
-Margin="0,0,0,20"
-Padding="15"
-BorderBrush="#D0D0D0"
-BorderThickness="1"
-CornerRadius="8">
+            Grid.Row="3"
+            Margin="0,0,0,20"
+            Padding="15"
+            Background="{DynamicResource CardBackgroundBrush}"
+            BorderBrush="{DynamicResource BorderBrush}"
+            BorderThickness="1"
+            CornerRadius="8">
 
             <DockPanel>
 
                 <TextBlock
-        DockPanel.Dock="Top"
-        Margin="0,0,0,15"
-        FontSize="18"
-        FontWeight="SemiBold"
-        Text="Статистика"/>
+                    DockPanel.Dock="Top"
+                    Margin="0,0,0,15"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Text="Статистика"/>
 
                 <Grid>
 
@@ -217,7 +227,8 @@ CornerRadius="8">
     Grid.Column="0"
     Margin="0,0,10,0"
     Padding="10"
-    BorderBrush="#DDDDDD"
+    Background="{DynamicResource CardBackgroundBrush}"
+    BorderBrush="{DynamicResource BorderBrush}"
     BorderThickness="1"
     CornerRadius="8">
 
@@ -287,7 +298,8 @@ CornerRadius="8">
     Grid.Column="1"
     Margin="10,0,0,0"
     Padding="10"
-    BorderBrush="#DDDDDD"
+    Background="{DynamicResource CardBackgroundBrush}"
+    BorderBrush="{DynamicResource BorderBrush}"
     BorderThickness="1"
     CornerRadius="8">
 
@@ -312,7 +324,10 @@ CornerRadius="8">
                         Margin="0,0,0,10"
                         HorizontalAlignment="Left"
                         ItemsSource="{Binding AvailableCharts}"
-                        SelectedItem="{Binding SelectedChart}"/>
+                        SelectedItem="{Binding SelectedChart}"
+                        Background="{DynamicResource ControlBackgroundBrush}"
+                        Foreground="{DynamicResource ControlForegroundBrush}"
+                        BorderBrush="{DynamicResource BorderBrush}"/>
 
                     <lvc:CartesianChart
                         Grid.Row="2"
