@@ -19,12 +19,14 @@ public class MainViewModel : ViewModelBase
     IWeatherRepository repository,
     IWeatherAnalyzer analyzer,
     IWeatherReportDownloader downloader,
-    IWeatherReportParser parser)
+    IWeatherReportParser parser,
+    IThemeManager themeManager)
     {
         _repository = repository;
         _analyzer = analyzer;
         _downloader = downloader;
         _parser = parser;
+        _themeManager = themeManager;
 
         LoadWeatherCommand = new RelayCommand(LoadWeatherAsync);
 
@@ -68,7 +70,8 @@ public class MainViewModel : ViewModelBase
     private readonly IWeatherAnalyzer _analyzer;
     private readonly IWeatherReportDownloader _downloader;
     private readonly IWeatherReportParser _parser;
-    
+    private readonly IThemeManager _themeManager;
+
     private List<WeatherData> _weatherHistory = [];
 
     public ObservableCollection<WeatherData> WeatherRecords { get; }
