@@ -77,6 +77,7 @@ public class MainViewModel : ViewModelBase
 
     private List<WeatherData> _weatherHistory = [];
     private AppTheme _selectedTheme = AppTheme.Light;
+    private AppLanguage _selectedLanguage = AppLanguage.Russian;
 
     public ObservableCollection<WeatherData> WeatherRecords { get; }
     = [];
@@ -364,4 +365,30 @@ public class MainViewModel : ViewModelBase
         }
     }
 
+    public IReadOnlyList<AppLanguage> AvailableLanguages { get; } =
+    [
+        AppLanguage.Russian,
+        AppLanguage.English
+    ];
+
+    public AppLanguage SelectedLanguage
+    {
+        get => _selectedLanguage;
+        set
+        {
+            if (SetProperty(ref _selectedLanguage, value))
+            {
+                switch (value)
+                {
+                    case AppLanguage.Russian:
+                        _languageManager.SetRussian();
+                        break;
+
+                    case AppLanguage.English:
+                        _languageManager.SetEnglish();
+                        break;
+                }
+            }
+        }
+    }
 }
