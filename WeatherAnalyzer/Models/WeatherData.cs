@@ -9,13 +9,13 @@ public class WeatherData
 
     public int Temperature { get; set; }
 
-    public int WindSpeed { get; set; }
+    public double WindSpeed { get; set; }
 
     public double PrecipitationAmount { get; set; }
 
-    public int PrecipitationProbability { get; set; }
+    public double PrecipitationProbability { get; set; }
 
-    public int Visibility { get; set; }
+    public double Visibility { get; set; }
 
     public string Description { get; set; } = string.Empty;
 

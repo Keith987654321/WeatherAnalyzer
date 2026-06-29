@@ -222,47 +222,43 @@ public class MainViewModel : ViewModelBase
         }
     }
 
-    private void BuildTemperatureChart()
+    private void BuildChart(
+    IEnumerable<double> values,
+    string seriesName,
+    string axisName)
     {
         TemperatureSeries =
         [
-            new LineSeries<int>
-            {
-                Name = "Температура",
-
-                GeometrySize = graphGeometrySize,
-
-                LineSmoothness = graphLineSmoothness,
-
-                Values = _weatherHistory
-                    .Select(x => x.Temperature)
-                    .ToArray()
-            }
+            new LineSeries<double>
+        {
+            Name = seriesName,
+            GeometrySize = graphGeometrySize,
+            LineSmoothness = graphLineSmoothness,
+            Values = values.ToArray()
+        }
         ];
 
         XAxes =
         [
             new Axis
-            {
-                Labels = _weatherHistory
-                    .Select(x => $"{x.Date:dd.MM}\n{GetPeriodShortName(x.Period)}")
-                    .ToArray(),
+        {
+            Labels = _weatherHistory
+                .Select(x => $"{x.Date:dd.MM}\n{GetPeriodShortName(x.Period)}")
+                .ToArray(),
 
-                LabelsRotation = 0,
-
-                TextSize = graphTextSize
-            }
+            TextSize = graphTextSize
+        }
         ];
 
         YAxes =
         [
             new Axis
-            {
-                Name = "Температура (°C)",
-                NameTextSize = graphNameTextSize,
-                TextSize = graphTextSize,
-                MinStep = 1
-            }
+        {
+            Name = axisName,
+            NameTextSize = graphNameTextSize,
+            TextSize = graphTextSize,
+            MinStep = 1
+        }
         ];
 
         OnPropertyChanged(nameof(TemperatureSeries));
@@ -270,20 +266,44 @@ public class MainViewModel : ViewModelBase
         OnPropertyChanged(nameof(YAxes));
     }
 
+    private void BuildTemperatureChart()
+    {
+        BuildChart(
+            _weatherHistory.Select(x => (double)x.Temperature),
+            "Температура",
+            "Температура (°C)");
+    }
+
     private void BuildWindChart()
     {
+        BuildChart(
+            _weatherHistory.Select(x => x.WindSpeed),
+            "Скорость ветра",
+            "км/ч");
     }
 
     private void BuildVisibilityChart()
     {
+        BuildChart(
+            _weatherHistory.Select(x => x.Visibility),
+            "Видимость",
+            "км");
     }
 
     private void BuildPrecipitationAmountChart()
     {
+        BuildChart(
+            _weatherHistory.Select(x => x.PrecipitationAmount),
+            "Количество осадков",
+            "мм");
     }
 
     private void BuildPrecipitationProbabilityChart()
     {
+        BuildChart(
+            _weatherHistory.Select(x => x.PrecipitationProbability),
+            "Вероятность осадков",
+            "%");
     }
 
     private static string GetPeriodShortName(DayPeriod period)
