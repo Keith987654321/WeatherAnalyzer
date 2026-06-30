@@ -29,4 +29,32 @@
         График
     </sys:String>
 
+	<sys:String x:Key="AvgTemperature">
+		Средняя Температура
+	</sys:String>
+
+	<sys:String x:Key="MinTemperature">
+		Минимальная Температура
+	</sys:String>
+
+	<sys:String x:Key="MaxTemperature">
+		Максимальная Температура
+	</sys:String>
+
+	<sys:String x:Key="AvgWindSpeed">
+		Средняя Скорость Ветра
+	</sys:String>
+
+	<sys:String x:Key="AvgVisibility">
+		Средняя Видимость
+	</sys:String>
+
+	<sys:String x:Key="PrecAmount">
+		Количество Осадков
+	</sys:String>
+
+	<sys:String x:Key="PrecProb">
+		Вероятность Осадков
+	</sys:String>
+
 </ResourceDictionary>

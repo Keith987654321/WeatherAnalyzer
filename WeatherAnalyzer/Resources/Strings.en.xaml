@@ -29,4 +29,31 @@
         Chart
     </sys:String>
 
+	<sys:String x:Key="AvgTemperature">
+		Average Temperature
+	</sys:String>
+
+	<sys:String x:Key="MinTemperature">
+		Minimum Temperature
+	</sys:String>
+
+	<sys:String x:Key="MaxTemperature">
+		Maximum Temperature
+	</sys:String>
+
+	<sys:String x:Key="AvgWindSpeed">
+		Average Wind Speed
+	</sys:String>
+
+    <sys:String x:Key="AvgVisibility">
+        Average Visibility
+    </sys:String>
+    
+    <sys:String x:Key="PrecAmount">
+        Precipitation Amount
+    </sys:String>
+
+    <sys:String x:Key="PrecProb">
+        Precipitation Probability
+    </sys:String>
 </ResourceDictionary>

@@ -87,7 +87,7 @@
             <TextBlock
             Margin="0,0,0,5"
             FontWeight="SemiBold"
-            Text="Город"/>
+            Text="{DynamicResource City}"/>
 
             <Grid>
 
@@ -145,7 +145,7 @@
                     Margin="0,0,0,15"
                     FontSize="18"
                     FontWeight="SemiBold"
-                    Text="Статистика"/>
+                    Text="{DynamicResource Statistics}"/>
 
                 <Grid>
 
@@ -164,14 +164,14 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Margin="0,4" Text="Средняя температура"/>
+                    <TextBlock Margin="0,4" Text="{DynamicResource AvgTemperature}"/>
                     <TextBlock Grid.Column="1"
                     Margin="0,4"
                     Text="{Binding AverageTemperature, StringFormat={}{0:F1} °C}"/>
 
                     <TextBlock Grid.Row="1"
                     Margin="0,4"
-                    Text="Минимальная температура"/>
+                    Text="{DynamicResource MinTemperature}"/>
                     <TextBlock Grid.Row="1"
                     Grid.Column="1"
                     Margin="0,4"
@@ -179,7 +179,7 @@
 
                     <TextBlock Grid.Row="2"
                     Margin="0,4"
-                    Text="Максимальная температура"/>
+                    Text="{DynamicResource MaxTemperature}"/>
                     <TextBlock Grid.Row="2"
                     Grid.Column="1"
                     Margin="0,4"
@@ -187,7 +187,7 @@
 
                     <TextBlock Grid.Row="3"
                     Margin="0,4"
-                    Text="Средняя скорость ветра"/>
+                    Text="{DynamicResource AvgWindSpeed}"/>
                     <TextBlock Grid.Row="3"
                     Grid.Column="1"
                     Margin="0,4"
@@ -195,7 +195,7 @@
 
                     <TextBlock Grid.Row="4"
                     Margin="0,4"
-                    Text="Средняя видимость"/>
+                    Text="{DynamicResource AvgVisibility}"/>
                     <TextBlock Grid.Row="4"
                     Grid.Column="1"
                     Margin="0,4"
@@ -203,7 +203,7 @@
 
                     <TextBlock Grid.Row="5"
                     Margin="0,4"
-                    Text="Среднее количество осадков"/>
+                    Text="{DynamicResource PrecAmount}"/>
                     <TextBlock Grid.Row="5"
                     Grid.Column="1"
                     Margin="0,4"
@@ -211,7 +211,7 @@
 
                     <TextBlock Grid.Row="6"
                     Margin="0,4"
-                    Text="Средняя вероятность осадков"/>
+                    Text="{DynamicResource PrecProb}"/>
                     <TextBlock Grid.Row="6"
                     Grid.Column="1"
                     Margin="0,4"
@@ -250,7 +250,7 @@
             Margin="0,0,0,10"
             FontSize="18"
             FontWeight="SemiBold"
-            Text="Прогноз"/>
+            Text="{DynamicResource Forecast}"/>
 
                     <DataGrid
             AutoGenerateColumns="False"
@@ -327,7 +327,7 @@
                         Margin="0,0,0,10"
                         FontSize="18"
                         FontWeight="SemiBold"
-                        Text="График"/>
+                        Text="{DynamicResource Chart}"/>
 
                     <ComboBox
                         Grid.Row="1"
