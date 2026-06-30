@@ -52,7 +52,7 @@
                     HorizontalAlignment="Center"
                     Margin="0,5,0,0"
                     Foreground="{DynamicResource SecondaryForegroundBrush}"
-                    Text="Анализ погодных данных"/>
+                    Text="{DynamicResource Subtitle}"/>
 
             </StackPanel>
 
@@ -111,7 +111,7 @@
                     Background="{DynamicResource AccentBrush}"
                     Foreground="White"
                     BorderBrush="{DynamicResource AccentBrush}"
-                    Content="Загрузить"
+                    Content="{DynamicResource Load}"
                     Command="{Binding LoadWeatherCommand}"/>
 
             </Grid>
@@ -269,31 +269,31 @@
                         <DataGrid.Columns>
 
                             <DataGridTextColumn
-                        Header="Дата"
+                        Header="{DynamicResource ColumnDate}"
                         Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}" />
 
                             <DataGridTextColumn
-                        Header="Период"
+                        Header="{DynamicResource ColumnPeriod}"
                         Binding="{Binding PeriodName}" />
 
                             <DataGridTextColumn
-                        Header="Темп."
+                        Header="{DynamicResource ColumnTemperature}"
                         Binding="{Binding Temperature, StringFormat={}{0} °C}" />
 
                             <DataGridTextColumn
-                        Header="Ветер"
+                        Header="{DynamicResource ColumnWind}"
                         Binding="{Binding WindSpeed, StringFormat={}{0} км/ч}" />
 
                             <DataGridTextColumn
-                        Header="Видимость"
+                        Header="{DynamicResource ColumnVisibility}"
                         Binding="{Binding Visibility, StringFormat={}{0} км}" />
 
                             <DataGridTextColumn
-                        Header="Осадки"
+                        Header="{DynamicResource ColumnRain}"
                         Binding="{Binding PrecipitationAmount, StringFormat={}{0:F1} мм}" />
 
                             <DataGridTextColumn
-                        Header="Вероят-ть"
+                        Header="{DynamicResource ColumnProbability}"
                         Binding="{Binding PrecipitationProbability, StringFormat={}{0}%}" />
 
                         </DataGrid.Columns>

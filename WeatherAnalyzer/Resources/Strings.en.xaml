@@ -56,4 +56,28 @@
     <sys:String x:Key="PrecProb">
         Precipitation Probability
     </sys:String>
+
+    <sys:String x:Key="StatusEnterCity">
+        Enter a city name.
+    </sys:String>
+
+    <sys:String x:Key="StatusLoading">
+        Loading data...
+    </sys:String>
+
+    <sys:String x:Key="StatusError">
+        Error
+    </sys:String>
+
+    <sys:String x:Key="StatusCompleted">
+        Data loaded successfully.
+    </sys:String>
+
+    <sys:String x:Key="ColumnDate">Date</sys:String>
+    <sys:String x:Key="ColumnPeriod">Period</sys:String>
+    <sys:String x:Key="ColumnTemperature">Temp.</sys:String>
+    <sys:String x:Key="ColumnWind">Wind</sys:String>
+    <sys:String x:Key="ColumnVisibility">Visibility</sys:String>
+    <sys:String x:Key="ColumnRain">Rain</sys:String>
+    <sys:String x:Key="ColumnProbability">Probability</sys:String>
 </ResourceDictionary>

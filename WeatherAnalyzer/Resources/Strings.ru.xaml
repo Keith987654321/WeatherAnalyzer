@@ -57,4 +57,28 @@
 		Вероятность Осадков
 	</sys:String>
 
+    <sys:String x:Key="StatusEnterCity">
+        Введите название города.
+    </sys:String>
+
+    <sys:String x:Key="StatusLoading">
+        Загрузка данных...
+    </sys:String>
+
+    <sys:String x:Key="StatusError">
+        Ошибка
+    </sys:String>
+
+    <sys:String x:Key="StatusCompleted">
+        Данные успешно загружены.
+    </sys:String>
+
+    <sys:String x:Key="ColumnDate">Дата</sys:String>
+    <sys:String x:Key="ColumnPeriod">Период</sys:String>
+    <sys:String x:Key="ColumnTemperature">Темп.</sys:String>
+    <sys:String x:Key="ColumnWind">Ветер</sys:String>
+    <sys:String x:Key="ColumnVisibility">Видимость</sys:String>
+    <sys:String x:Key="ColumnRain">Осадки</sys:String>
+    <sys:String x:Key="ColumnProbability">Вероятность</sys:String>
+
 </ResourceDictionary>

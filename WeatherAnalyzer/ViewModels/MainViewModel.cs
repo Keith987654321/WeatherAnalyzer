@@ -35,6 +35,7 @@ public class MainViewModel : ViewModelBase
         Statistics = new WeatherStatistics();
 
 
+
     TemperatureSeries =
         [
             new LineSeries<int>
@@ -161,13 +162,13 @@ public class MainViewModel : ViewModelBase
     {
         if (string.IsNullOrWhiteSpace(City))
         {
-            Status = "Введите название города.";
+            Status = LocalizationHelper.GetString("StatusEnterCity");
             return;
         }
 
         try
         {
-            Status = "Загрузка данных...";
+            Status = LocalizationHelper.GetString("StatusLoading");
 
             var report = await _downloader.DownloadAsync(City);
 
@@ -185,11 +186,11 @@ public class MainViewModel : ViewModelBase
                 WeatherRecords.Add(item);
             }
 
-            Status = $"Загружено {history.Count} записей.";
+            Status = LocalizationHelper.GetString("StatusCompleted");
         }
         catch (Exception ex)
         {
-            Status = $"Ошибка: {ex.Message}";
+            Status = $"{LocalizationHelper.GetString("StatusError")}: {ex.Message}";
         }
     }
 
