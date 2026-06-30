@@ -5,6 +5,10 @@ namespace WeatherAnalyzer.Services;
 
 public class LanguageManager : ILanguageManager
 {
+
+    public event Action? LanguageChanged;
+
+
     public void SetRussian()
     {
         ApplyLanguage("Resources/Strings.ru.xaml");
@@ -15,7 +19,7 @@ public class LanguageManager : ILanguageManager
         ApplyLanguage("Resources/Strings.en.xaml");
     }
 
-    private static void ApplyLanguage(string languagePath)
+    private void ApplyLanguage(string languagePath)
     {
         var application = Application.Current;
 
@@ -40,5 +44,7 @@ public class LanguageManager : ILanguageManager
         {
             Source = new Uri(languagePath, UriKind.Relative)
         });
+
+        LanguageChanged?.Invoke();
     }
 }

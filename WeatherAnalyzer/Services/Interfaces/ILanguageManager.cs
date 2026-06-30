@@ -2,6 +2,7 @@
 
 public interface ILanguageManager
 {
+    event Action? LanguageChanged;
     void SetRussian();
 
     void SetEnglish();

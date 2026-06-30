@@ -253,6 +253,7 @@
             Text="{DynamicResource Forecast}"/>
 
                     <DataGrid
+            x:Name="ForecastGrid"
             AutoGenerateColumns="False"
             ColumnWidth="*"
             IsReadOnly="True"
@@ -269,31 +270,38 @@
                         <DataGrid.Columns>
 
                             <DataGridTextColumn
-                        Header="{DynamicResource ColumnDate}"
+                        Header="{Binding DataContext.ColumnDateHeader,
+                            RelativeSource={RelativeSource AncestorType=Window}}"
                         Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}" />
 
                             <DataGridTextColumn
-                        Header="{DynamicResource ColumnPeriod}"
+                        Header="{Binding DataContext.ColumnPeriodHeader,
+                            RelativeSource={RelativeSource AncestorType=Window}}"
                         Binding="{Binding PeriodName}" />
 
                             <DataGridTextColumn
-                        Header="{DynamicResource ColumnTemperature}"
+                        Header="{Binding DataContext.ColumnTemperatureHeader,
+                            RelativeSource={RelativeSource AncestorType=Window}}"
                         Binding="{Binding Temperature, StringFormat={}{0} °C}" />
 
                             <DataGridTextColumn
-                        Header="{DynamicResource ColumnWind}"
+                        Header="{Binding DataContext.ColumnWindHeader,
+                            RelativeSource={RelativeSource AncestorType=Window}}"
                         Binding="{Binding WindSpeed, StringFormat={}{0} км/ч}" />
 
                             <DataGridTextColumn
-                        Header="{DynamicResource ColumnVisibility}"
+                        Header="{Binding DataContext.ColumnVisibilityHeader,
+                            RelativeSource={RelativeSource AncestorType=Window}}"
                         Binding="{Binding Visibility, StringFormat={}{0} км}" />
 
                             <DataGridTextColumn
-                        Header="{DynamicResource ColumnRain}"
+                        Header="{Binding DataContext.ColumnRainHeader,
+                            RelativeSource={RelativeSource AncestorType=Window}}"
                         Binding="{Binding PrecipitationAmount, StringFormat={}{0:F1} мм}" />
 
                             <DataGridTextColumn
-                        Header="{DynamicResource ColumnProbability}"
+                        Header="{Binding DataContext.ColumnProbabilityHeader,
+                            RelativeSource={RelativeSource AncestorType=Window}}"
                         Binding="{Binding PrecipitationProbability, StringFormat={}{0}%}" />
 
                         </DataGrid.Columns>

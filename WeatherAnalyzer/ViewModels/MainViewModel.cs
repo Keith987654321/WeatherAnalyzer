@@ -383,13 +383,49 @@ public class MainViewModel : ViewModelBase
                 {
                     case AppLanguage.Русский:
                         _languageManager.SetRussian();
+                        RefreshLocalization();
+                        Status = LocalizationHelper.GetString("StatusCompleted");
                         break;
 
                     case AppLanguage.English:
                         _languageManager.SetEnglish();
+                        RefreshLocalization();
+                        Status = LocalizationHelper.GetString("StatusCompleted");
                         break;
                 }
             }
         }
+    }
+
+    public string ColumnDateHeader =>
+    LocalizationHelper.GetString("ColumnDate");
+
+    public string ColumnPeriodHeader =>
+        LocalizationHelper.GetString("ColumnPeriod");
+
+    public string ColumnTemperatureHeader =>
+        LocalizationHelper.GetString("ColumnTemperature");
+
+    public string ColumnWindHeader =>
+        LocalizationHelper.GetString("ColumnWind");
+
+    public string ColumnVisibilityHeader =>
+        LocalizationHelper.GetString("ColumnVisibility");
+
+    public string ColumnRainHeader =>
+        LocalizationHelper.GetString("ColumnRain");
+
+    public string ColumnProbabilityHeader =>
+        LocalizationHelper.GetString("ColumnProbability");
+
+    private void RefreshLocalization()
+    {
+        OnPropertyChanged(nameof(ColumnDateHeader));
+        OnPropertyChanged(nameof(ColumnPeriodHeader));
+        OnPropertyChanged(nameof(ColumnTemperatureHeader));
+        OnPropertyChanged(nameof(ColumnWindHeader));
+        OnPropertyChanged(nameof(ColumnVisibilityHeader));
+        OnPropertyChanged(nameof(ColumnRainHeader));
+        OnPropertyChanged(nameof(ColumnProbabilityHeader));
     }
 }
